@@ -1,0 +1,140 @@
+\documentclass[paper=a4,fontsize=11pt]{scrartcl} % KOMA-article class
+							
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{graphicx}                    % Enable pdflatex
+\usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{wrapfig}
+
+\frenchspacing              % Better looking spacings after periods
+\pagestyle{empty}           % No pagenumbers/headers/footers
+\textheight=700px           % Saving trees ;-)
+
+%%% Custom sectioning (sectsty package)
+%%% ------------------------------------------------------------
+\usepackage{sectsty}
+
+\sectionfont{%			            % Change font of \section command
+	\usefont{OT1}{phv}{b}{n}%		% bch-b-n: CharterBT-Bold font
+	\sectionrule{0pt}{0pt}{-5pt}{3pt}}
+
+%%% Macros
+%%% ------------------------------------------------------------
+\newlength{\spacebox}
+\settowidth{\spacebox}{8888888888}			% Box to align text
+\newcommand{\sepspace}{\vspace*{1em}}		% Vertical space macro
+
+\newcommand{\MyName}[1]{ % Name
+		\Huge \usefont{OT1}{phv}{b}{n} \hfill #1
+		\par \normalsize \normalfont}
+		
+\newcommand{\MySlogan}[1]{ % Slogan (optional)
+		\large \usefont{OT1}{phv}{m}{n}\hfill \textit{#1}
+		\par \normalsize \normalfont}
+
+\newcommand{\NewPart}[1]{\section*{\uppercase{#1}}}
+
+\newcommand{\PersonalEntry}[2]{
+		\noindent\hangindent=2em\hangafter=0 % Indentation
+		\parbox{\spacebox}{        % Box to align text
+		\textit{#1}}		       % Entry name (birth, address, etc.)
+		\hspace{1.5em} #2 \par}    % Entry value
+
+\newcommand{\SkillsEntry}[2]{      % Same as \PersonalEntry
+		\noindent\hangindent=2em\hangafter=0 % Indentation
+		\parbox{9em}{\textit{#1}}			   % Entry name (birth, address, etc.)
+		\parbox{25em}{ \small #2 \normalsize \par} }
+		
+\newcommand{\EducationEntry}[4]{
+		\noindent \textbf{#1} \hfill      % Study
+		\colorbox{Black}{%
+			\parbox{6em}{%
+			\hfill\color{White}#2}} \par  % Duration
+		\noindent \textit{#3} \par        % School
+			\noindent\hangindent=2em\hangafter=0 \small #4 % Description
+		\normalsize \par}
+
+\newcommand{\WorkEntry}[4]{				  % Same as \EducationEntry
+			\noindent \textbf{#1} \hfill      % Job name
+		\colorbox{Black}{\color{White}#2} \par  % Duration
+		\noindent \textit{#3} \par              % Company
+		\hangafter=0 \small #4 % Description
+		\normalsize \par}
+
+%%% Begin Document
+%%% ------------------------------------------------------------
+\begin{document}
+% you can upload a photo and include it here...
+\begin{wrapfigure}{l}{0.35\textwidth}
+	\vspace*{-5em}
+		\includegraphics[width=0.25\textwidth]{photo.jpg}
+\end{wrapfigure}
+
+\MyName{Aliaksandr Paulau}
+\MySlogan{Curriculum Vitae}
+
+\sepspace
+
+%%% Personal details
+%%% ------------------------------------------------------------
+\NewPart{Personal details}{}
+
+\PersonalEntry{Birth}{October 30, 1992}
+\PersonalEntry{Location}{Minsk, Republic of Belarus}
+\PersonalEntry{LinkedIn}{\url{https://www.linkedin.com/in/apaulau}}
+\PersonalEntry{Mail}{\href{mailto:paulau.alex@gmail.com}{paulau.alex@gmail.com}}
+
+%%% Education
+%%% ------------------------------------------------------------
+\NewPart{Education}{}
+
+\EducationEntry{MSc. Applied Computer Data Analysis}{2015-2016}{Belarusian State University}{Took courses in applied statistical analysis, time series forecasting, optimization and data analyst toolbox.}
+\sepspace
+
+\EducationEntry{BSc. Applied Mathematics and Computer Science}{2010-2015}{Belarusian State University}{Took overall courses in applied mathematics and computer science. Main specialization: probability theory and mathematical statistics.}
+
+%%% Work experience
+%%% ------------------------------------------------------------
+\NewPart{Work experience}{}
+
+\WorkEntry{Senior Software Engineer}{2016-2018}{Exadel Inc., Full-time}{
+\textbf{Project short summary}: Worked on a web-based chemistry research solution that gives broad access to literature, patents, deeply excerpted substances and related factual properties, reaction and chemical synthesis information, and bibliographic data, navigated and displayed via an actionable interface.
+
+\textbf{Responsibilities included}: Rapid development and prototyping for the beta releases, coding standards improvements and general performance optimization, active participation in product development, tasks estimation, architecture solutions suggestions, refactoring, code review. Active communication with product owners. Proof-of-concepts development.
+
+\textbf{Environment}: Angular 1.7, React 16, Bootstrap, Sass, babel with EcmaScript2015 features support, D3 for graphs rendering, communication with back-end via WebSockets, Karma and Jasmine for unit tests, Grunt as a build tool, Git as a version control system. Support of Google Chrome, Firefox, Safari, Internet Explorer 11 and later ones.}
+\sepspace
+
+\WorkEntry{Software Engineer}{2014-2016}{Exadel Inc., Full-time}{
+\textbf{Project short summary}: Participated in development of two related web applications for e-commerce: internal system and an application for external sellers.
+
+\textbf{Responsibilities included}: Developing rich client web application and maintaining JSP/Servlet web application. Responsive design integration using Bootstrap. Full stack bug fixing. Build process improvements.
+
+\textbf{Environment}: Java 8, JSP, Servlets, JavaScript, jQuery, jQueryUI, JavaScriptMVC, Bower, Grunt, HTML5, CSS3, Less, Bootstrap, Git.}
+\sepspace
+
+\pagebreak
+
+\WorkEntry{Junior Software Engineer}{2012-2013}{Exadel Inc., Part-time}{Participated in a few internal/external projects required full-cycle development (user interface development, development of hybrid mobile application, REST services implementation, database design and integration, troubleshooting).
+
+\textbf{Environment}: Java 6/7, Spring, Hibernate, Maven, JavaScript, jQuery, Sencha Touch, HTML5, CSS3, Subversion.
+}
+
+%%% Skills
+%%% ------------------------------------------------------------
+\NewPart{Skills}{}
+
+\SkillsEntry{Active knowledge:}{JavaScript (including ES6/ES7 features) \textbullet{} AngularJS (up to 1.7) \textbullet{} React (up to 16) \textbullet{} Redux \textbullet{} Jasmine \textbullet{} Grunt \textbullet{} Bootstrap \textbullet{} HTML5 \textbullet{} CSS3 \textbullet Sass \textbullet{} NodeJS \textbullet{} Express}
+
+\sepspace
+
+\SkillsEntry{Inactive knowledge:}{Java \textbullet{} Spring \textbullet{} Hibernate \textbullet{} R \textbullet{} C++ \textbullet{} Sencha Touch }
+
+\sepspace
+
+\SkillsEntry{Familiar:}{React Native \textbullet{} Backbone \textbullet{} Webpack \textbullet{} Gulp \textbullet{}}
+
+\end{document}
